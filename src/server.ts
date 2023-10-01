@@ -2,6 +2,7 @@ import express, { json, Request, Response } from 'express';
 import cors from 'cors';
 import errorHandler from 'middleware-http-errors';
 import morgan from 'morgan';
+import config from './config.json';
 
 // Set up web app
 const app = express();
@@ -12,7 +13,7 @@ app.use(cors());
 // for logging errors (print to terminal)
 app.use(morgan('dev'));
 
-const PORT: number = 3122;
+const PORT: number = parseInt(config.port);
 const HOST: string = process.env.IP || 'localhost';
 
 // start server
@@ -25,6 +26,12 @@ const server = app.listen(PORT, HOST, () => {
 app.get('/', (req: Request, res: Response) => {
   res.send('Hi!');
 })
+
+// WEB_APP request START
+
+// start your first request here
+
+// WEB_APP request END
 
 // Keep this BENEATH route definitions
 // handles errors nicely
